@@ -22,6 +22,9 @@ class SearchViewController: UIViewController
         self.sliderCountLabel.text = String(Int(self.slider.value))
         self.slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         self.downloadButton.layer.cornerRadius = 10
+        
+        /// TESTCODE
+        APIService.sharedInstance().getFlickrPhotosWithTextUrl("Goku")
     }
     
     // MARK: Helpers
