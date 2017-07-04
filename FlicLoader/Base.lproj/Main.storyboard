@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Downloads View Controller-->
         <scene sceneID="2wf-4a-jG3">
             <objects>
-                <viewController id="LKa-v6-dLr" sceneMemberID="viewController">
+                <viewController id="LKa-v6-dLr" customClass="DownloadsViewController" customModule="FlicLoader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZvJ-L9-Gn7"/>
                         <viewControllerLayoutGuide type="bottom" id="xxE-Mw-hYi"/>
@@ -21,9 +21,49 @@
                     <view key="view" contentMode="scaleToFill" id="Ajn-Vu-FxP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="srF-4c-3HH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="479"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YX-lK-nFD">
+                                <rect key="frame" x="313" y="580" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="A6Y-bP-elr"/>
+                                    <constraint firstAttribute="width" constant="46" id="MSf-ec-yTC"/>
+                                </constraints>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="next:" destination="LKa-v6-dLr" eventType="touchUpInside" id="KRt-8k-b61"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKw-i1-2v0">
+                                <rect key="frame" x="16" y="580" width="88" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="XK8-qu-wxw"/>
+                                    <constraint firstAttribute="height" constant="30" id="bcG-Tx-X3Z"/>
+                                </constraints>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="previous:" destination="LKa-v6-dLr" eventType="touchUpInside" id="EXv-4P-EZl"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xxE-Mw-hYi" firstAttribute="top" secondItem="5YX-lK-nFD" secondAttribute="bottom" constant="8" id="85T-2U-hD0"/>
+                            <constraint firstAttribute="trailing" secondItem="srF-4c-3HH" secondAttribute="trailing" id="9bY-u8-2lI"/>
+                            <constraint firstItem="xxE-Mw-hYi" firstAttribute="top" secondItem="srF-4c-3HH" secondAttribute="bottom" constant="75" id="A5N-cr-UgM"/>
+                            <constraint firstItem="vKw-i1-2v0" firstAttribute="leading" secondItem="Ajn-Vu-FxP" secondAttribute="leadingMargin" id="BHJ-hW-59w"/>
+                            <constraint firstItem="xxE-Mw-hYi" firstAttribute="top" secondItem="vKw-i1-2v0" secondAttribute="bottom" constant="8" id="L6e-aL-KiN"/>
+                            <constraint firstItem="srF-4c-3HH" firstAttribute="top" secondItem="ZvJ-L9-Gn7" secondAttribute="bottom" id="iNy-oc-iha"/>
+                            <constraint firstItem="srF-4c-3HH" firstAttribute="leading" secondItem="Ajn-Vu-FxP" secondAttribute="leading" id="nbW-SP-6W2"/>
+                            <constraint firstItem="5YX-lK-nFD" firstAttribute="trailing" secondItem="Ajn-Vu-FxP" secondAttribute="trailingMargin" id="ntP-Uy-Nbn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lpg-zS-zDI"/>
+                    <connections>
+                        <outlet property="imageView" destination="srF-4c-3HH" id="5g4-RZ-h3X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmX-Cb-3fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -76,7 +116,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-N1-pPU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-N1-pPU">
                                 <rect key="frame" x="312" y="285" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="CWk-rz-2DI"/>
@@ -93,6 +133,9 @@
                                 <state key="normal" title="Download">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="downloadImages" destination="Gac-mP-Nna" eventType="touchUpInside" id="8fe-1k-6kM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.69019607839999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>

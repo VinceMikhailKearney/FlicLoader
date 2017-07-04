@@ -9,49 +9,94 @@
 import Foundation
 import UIKit
 
+public protocol APIServiceDelegate {
+    func downloadedImages()
+    func updateToastProgress(_ progress : Float, imageCount : Int)
+    func downloadError(_ reason : String)
+}
+
 class APIService: NSObject
 {
     // MARK: Properties
-    var components : URLComponents?
-    static var service : APIService?
+    private static var service : APIService?
+    open var delegates : MulticastDelegate<APIServiceDelegate>?
+    public static var totalImageCount : Int?
     
-    static func sharedInstance() -> APIService
-    {
+    public static func sharedInstance() -> APIService {
         if self.service == nil {
             self.service = APIService()
         }
-        
         return self.service!
+    }
+    
+    override init() {
+        delegates = MulticastDelegate()
+        super.init()
+    }
+    
+    public func getFlickrPhotos(withText text : String, count : Int)
+    {
+        let url : URL = self.urlFromComponentsWithText(text, count: String(count))
+        print("The URL: \(url)")
+        self.runDataTask(withUrl: url)
+        { (result) in
+            
+            guard let photosDictionary = result?["photos"] as? [String : AnyObject], let photosArray = photosDictionary["photo"] as? Array<Dictionary<String, AnyObject>> else {
+                self.gotAnError(reason: "Did not find the keys in the dictionary")
+                return
+            }
+            
+            let hash : String = String(photosArray.description.hashValue)
+            let newFolder : FlicFolder = FlicFolder(identifier: hash)
+            
+            for photoDic in photosArray
+            {
+                if let string = photoDic["url_m"] as? String {
+                    print(string)
+                }
+                guard let imageUrlString = photoDic["url_m"] as? String else { self.gotAnError(reason: "Could not find image url string"); return }
+                guard let imageTitle = photoDic["title"] as? String else { self.gotAnError(reason: "Could not find image title"); return }
+                guard let imageId = photoDic["id"] as? String else { self.gotAnError(reason: "Could not get image ID"); return}
+                
+                let imageURL = URL(string: imageUrlString)
+                if let imageData = try? Data(contentsOf: imageURL!)
+                {
+                    let newFlic : Flic = Flic(title: imageTitle, data: imageData, identifier: imageId)
+                    newFolder.addFlic(newFlic)
+                }
+                else {
+                    self.gotAnError(reason: "Seems that no image exists at this URL!")
+                }
+            }
+            
+            Folders.addFolder(newFolder)
+            DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadedImages() } }
+            print("Should have downloaded them all")
+        }
     }
     
     private func urlFromComponentsWithText(_ text : String, count : String) -> URL
     {
-        components = URLComponents()
-        components?.scheme = "https"
-        components?.host = "api.flickr.com"
-        components?.path = "/services/rest"
-        components?.queryItems = [URLQueryItem]()
-        components?.queryItems!.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
-        components?.queryItems!.append(URLQueryItem(name: "api_key", value: Secret.APIKey))
-        components?.queryItems!.append(URLQueryItem(name: "text", value: text))
-        components?.queryItems!.append(URLQueryItem(name: "per_page", value: count))
-        components?.queryItems!.append(URLQueryItem(name: "safe_search", value: "1"))
-        components?.queryItems!.append(URLQueryItem(name: "format", value: "json"))
-        components?.queryItems!.append(URLQueryItem(name: "nojsoncallback", value: "1"))
+        var components : URLComponents = URLComponents()
+        components.scheme = "https"
+        components.host = "api.flickr.com"
+        components.path = "/services/rest"
+        components.queryItems = [URLQueryItem]()
+        components.queryItems!.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
+        components.queryItems!.append(URLQueryItem(name: "api_key", value: Secret.APIKey))
+        components.queryItems!.append(URLQueryItem(name: "text", value: text))
+        components.queryItems!.append(URLQueryItem(name: "per_page", value: count))
+        components.queryItems!.append(URLQueryItem(name: "extras", value: "url_m"))
+        components.queryItems!.append(URLQueryItem(name: "safe_search", value: "1"))
+        components.queryItems!.append(URLQueryItem(name: "format", value: "json"))
+        components.queryItems!.append(URLQueryItem(name: "nojsoncallback", value: "1"))
         
-        return (components?.url)!
-    }
-    
-    public func getFlickrPhotosWithTextUrl(_ text : String)
-    {
-        self.runDataTask(withUrl: self.urlFromComponentsWithText(text, count: "20"))
-        { (result) in
-            print("This is the result that we have back -> \(result!)")
-        }
+        return (components.url)!
     }
     
     private func gotAnError(reason : String) {
         print(reason)
+        DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadError(reason) } }
     }
     
     private func runDataTask(withUrl url : URL, completion: @escaping (_ result : Dictionary<String, AnyObject>?) -> Void)

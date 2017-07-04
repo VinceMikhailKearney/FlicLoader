@@ -8,7 +8,13 @@
 
 import UIKit
 
-class SearchViewController: UIViewController
+extension String {
+    public func stripWhitespace() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+class SearchViewController: UIViewController, APIServiceDelegate
 {
     // MARK: Properties
     @IBOutlet weak var downloadButton : UIButton!
@@ -16,20 +22,67 @@ class SearchViewController: UIViewController
     @IBOutlet weak var sliderCountLabel : UILabel!
     @IBOutlet weak var textField : UITextField!
     
+    // MARK: Lifecycle
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.sliderCountLabel.text = String(Int(self.slider.value))
         self.slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         self.downloadButton.layer.cornerRadius = 10
-        
-        /// TESTCODE
-        APIService.sharedInstance().getFlickrPhotosWithTextUrl("Goku")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        APIService.sharedInstance().delegates?.addDelegate(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        APIService.sharedInstance().delegates?.removeDelegate(self)
     }
     
     // MARK: Helpers
+    
     func sliderValueChanged() {
         self.sliderCountLabel.text = String(Int(self.slider.value))
+    }
+    
+    func showToast(_ text : String)
+    {
+        let hud : MBProgressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .text
+        hud.label.text = text
+        hud.label.numberOfLines = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {  MBProgressHUD.hide(for: self.view, animated: true) }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func downloadImages() {
+        self.textField.resignFirstResponder()
+        self.view.isUserInteractionEnabled = false
+        let string : String = self.textField.text!.stripWhitespace()
+        print("The text we are searching for: \(string)")
+        APIService.sharedInstance().getFlickrPhotos(withText: string, count: Int(self.slider.value))
+    }
+    
+    // MARK: APIServiceDelegate Methods
+    
+    func downloadedImages() {
+        self.view.isUserInteractionEnabled = true
+        MBProgressHUD.hide(for: self.view, animated: true)
+        self.showToast("Images have been downloaded")
+    }
+    
+    func downloadError(_ reason: String) {
+        self.view.isUserInteractionEnabled = true
+        MBProgressHUD.hide(for: self.view, animated: true)
+        self.showToast(reason)
+    }
+    
+    func updateToastProgress(_ progress: Float, imageCount: Int) {
+        
     }
 }
 
