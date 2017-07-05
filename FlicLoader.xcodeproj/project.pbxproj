@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8011B101F0D5A3D00BBFC0C /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8011B0F1F0D5A3D00BBFC0C /* FolderViewController.swift */; };
 		D88EACB01F0C1C9C00C50463 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88EACAF1F0C1C9C00C50463 /* MulticastDelegate.swift */; };
 		D88EACB41F0C1EA300C50463 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D88EACB31F0C1EA300C50463 /* MBProgressHUD.m */; };
 		D8D56A891EFB1604000168EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D56A881EFB1604000168EC /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8011B0F1F0D5A3D00BBFC0C /* FolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		D88EACAF1F0C1C9C00C50463 /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		D88EACB11F0C1EA300C50463 /* FlicLoader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlicLoader-Bridging-Header.h"; sourceTree = "<group>"; };
 		D88EACB21F0C1EA300C50463 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				D8F15F121F0019F800F03344 /* Flic.swift */,
 				D8F15F141F001AE600F03344 /* Folders.swift */,
 				D88EACB11F0C1EA300C50463 /* FlicLoader-Bridging-Header.h */,
+				D8011B0F1F0D5A3D00BBFC0C /* FolderViewController.swift */,
 			);
 			path = FlicLoader;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				D8F15F131F0019F800F03344 /* Flic.swift in Sources */,
 				D8D56A891EFB1604000168EC /* AppDelegate.swift in Sources */,
 				D88EACB41F0C1EA300C50463 /* MBProgressHUD.m in Sources */,
+				D8011B101F0D5A3D00BBFC0C /* FolderViewController.swift in Sources */,
 				D8F15F151F001AE600F03344 /* Folders.swift in Sources */,
 				D88EACB01F0C1C9C00C50463 /* MulticastDelegate.swift in Sources */,
 			);

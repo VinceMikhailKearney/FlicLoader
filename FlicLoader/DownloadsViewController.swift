@@ -17,15 +17,19 @@ class DownloadsViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         self.table.delegate = self
         self.table.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.flicFolders = Folders.list!
+        self.table.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFlicFolder" {
-            // Need to set up a new view controller and link to here.
+            (segue.destination as? FolderViewController)?.flics = sender as? Array<Flic>
         }
     }
 }
@@ -45,25 +49,8 @@ extension DownloadsViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         print("The table cell name: \((self.flicFolders?[indexPath.row])?.name ?? "No name")")
+        self.performSegue(withIdentifier: "showFlicFolder", sender: (self.flicFolders?[indexPath.row])?.flicList)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-/** 
- func updateImage(position : Int) {
- self.imageView.image = UIImage(data: ((self.flicFolder?[position])?.flicData)!)
- }
- 
- @IBAction func previous(_ sender : UIButton) {
- self.imagePosition -= 1
- if self.imagePosition == -1 { self.imagePosition = (self.flicFolder?.count)! - 1 }
- self.updateImage(position: imagePosition)
- }
- 
- @IBAction func next(_ sender : UIButton) {
- self.imagePosition += 1
- if self.imagePosition == self.flicFolder?.count { self.imagePosition = 0 }
- self.updateImage(position: imagePosition)
- }
- */
