@@ -51,7 +51,7 @@ class APIService: NSObject
                 return
             }
             
-            let newFolder : FlicFolder = FlicFolder(identifier: String(text.hash))
+            let newFolder : FlicFolder = FlicFolder(identifier: String(text.hash), name: text)
             
             for photoDic in photosArray
             {

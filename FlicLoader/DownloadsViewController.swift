@@ -11,34 +11,59 @@ import UIKit
 class DownloadsViewController: UIViewController
 {
     // MARK: Properties
-    @IBOutlet weak var imageView : UIImageView!
-    private var flicFolder : Array<Flic>?
-    private var imagePosition : Int = 0
+    @IBOutlet weak var table : UITableView!
+    fileprivate var flicFolders : Array<FlicFolder>?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.imageView.contentMode = .scaleAspectFit
-        self.flicFolder = (Folders.list?[0])?.flics()
-        if self.flicFolder != nil {
-            self.updateImage(position: imagePosition)
+        self.table.delegate = self
+        self.table.dataSource = self
+        self.flicFolders = Folders.list!
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showFlicFolder" {
+            // Need to set up a new view controller and link to here.
         }
     }
-    
-    func updateImage(position : Int) {
-        self.imageView.image = UIImage(data: ((self.flicFolder?[position])?.flicData)!)
+}
+
+extension DownloadsViewController : UITableViewDelegate, UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.flicFolders?.count)!
     }
     
-    @IBAction func previous(_ sender : UIButton) {
-        self.imagePosition -= 1
-        if self.imagePosition == -1 { self.imagePosition = (self.flicFolder?.count)! - 1 }
-        self.updateImage(position: imagePosition)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "cell")!
     }
     
-    @IBAction func next(_ sender : UIButton) {
-        self.imagePosition += 1
-        if self.imagePosition == self.flicFolder?.count { self.imagePosition = 0 }
-        self.updateImage(position: imagePosition)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.textLabel?.text = (self.flicFolders?[indexPath.row])?.name
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("The table cell name: \((self.flicFolders?[indexPath.row])?.name ?? "No name")")
     }
 }
+
+/** 
+ func updateImage(position : Int) {
+ self.imageView.image = UIImage(data: ((self.flicFolder?[position])?.flicData)!)
+ }
+ 
+ @IBAction func previous(_ sender : UIButton) {
+ self.imagePosition -= 1
+ if self.imagePosition == -1 { self.imagePosition = (self.flicFolder?.count)! - 1 }
+ self.updateImage(position: imagePosition)
+ }
+ 
+ @IBAction func next(_ sender : UIButton) {
+ self.imagePosition += 1
+ if self.imagePosition == self.flicFolder?.count { self.imagePosition = 0 }
+ self.updateImage(position: imagePosition)
+ }
+ */

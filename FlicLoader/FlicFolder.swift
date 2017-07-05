@@ -26,10 +26,11 @@ class FlicFolder: NSObject
         super.init()
     }
     
-    convenience init(identifier : String)
+    convenience init(identifier : String, name : String)
     {
         self.init()
         self.identifier = identifier
+        self.name = name
     }
     
     public func flics() -> Array<Flic> {
