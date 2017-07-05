@@ -31,7 +31,6 @@ class SearchViewController: UIViewController, APIServiceDelegate
         self.sliderCountLabel.text = String(Int(self.slider.value))
         self.slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         self.downloadButton.layer.cornerRadius = 10
-        self.textField!.text = "Titanfall, BT"
     }
     
     override func viewWillAppear(_ animated: Bool) {

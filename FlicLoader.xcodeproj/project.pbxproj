@@ -76,6 +76,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D85B045A1F0D8443005C7BE3 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				D88EACAF1F0C1C9C00C50463 /* MulticastDelegate.swift */,
+				D88EACB21F0C1EA300C50463 /* MBProgressHUD.h */,
+				D88EACB31F0C1EA300C50463 /* MBProgressHUD.m */,
+			);
+			name = ext;
+			sourceTree = "<group>";
+		};
+		D85B045B1F0D844D005C7BE3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D8D56AAC1EFB19C5000168EC /* DownloadsViewController.swift */,
+				D8D56A8A1EFB1604000168EC /* SearchViewController.swift */,
+				D8011B0F1F0D5A3D00BBFC0C /* FolderViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D85B045C1F0D8453005C7BE3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8F15F101F0019ED00F03344 /* FlicFolder.swift */,
+				D8F15F121F0019F800F03344 /* Flic.swift */,
+				D8F15F141F001AE600F03344 /* Folders.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		D8D56A7C1EFB1604000168EC = {
 			isa = PBXGroup;
 			children = (
@@ -97,23 +127,17 @@
 		D8D56A871EFB1604000168EC /* FlicLoader */ = {
 			isa = PBXGroup;
 			children = (
-				D88EACB21F0C1EA300C50463 /* MBProgressHUD.h */,
-				D88EACB31F0C1EA300C50463 /* MBProgressHUD.m */,
-				D88EACAF1F0C1C9C00C50463 /* MulticastDelegate.swift */,
+				D85B045A1F0D8443005C7BE3 /* ext */,
 				D8D56A881EFB1604000168EC /* AppDelegate.swift */,
 				D8D56AA81EFB16C3000168EC /* APIService.swift */,
-				D8D56AAC1EFB19C5000168EC /* DownloadsViewController.swift */,
-				D8D56A8A1EFB1604000168EC /* SearchViewController.swift */,
 				D8D56AAA1EFB1896000168EC /* Secret.swift */,
+				D85B045C1F0D8453005C7BE3 /* Models */,
+				D85B045B1F0D844D005C7BE3 /* UI */,
 				D8D56A8C1EFB1604000168EC /* Main.storyboard */,
 				D8D56A8F1EFB1604000168EC /* Assets.xcassets */,
 				D8D56A911EFB1604000168EC /* LaunchScreen.storyboard */,
 				D8D56A941EFB1604000168EC /* Info.plist */,
-				D8F15F101F0019ED00F03344 /* FlicFolder.swift */,
-				D8F15F121F0019F800F03344 /* Flic.swift */,
-				D8F15F141F001AE600F03344 /* Folders.swift */,
 				D88EACB11F0C1EA300C50463 /* FlicLoader-Bridging-Header.h */,
-				D8011B0F1F0D5A3D00BBFC0C /* FolderViewController.swift */,
 			);
 			path = FlicLoader;
 			sourceTree = "<group>";

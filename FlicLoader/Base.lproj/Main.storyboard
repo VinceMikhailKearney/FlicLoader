@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sJE-9j-041">
+                            <tableView clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sJE-9j-041">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -70,24 +70,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7OG-Vy-kVd">
                                 <rect key="frame" x="16" y="72" width="343" height="476"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3q-wv-nzk">
-                                <rect key="frame" x="16" y="580" width="92" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3q-wv-nzk">
+                                <rect key="frame" x="16" y="560" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="dHn-fN-e8h"/>
-                                    <constraint firstAttribute="width" constant="92" id="ydm-60-5xV"/>
+                                    <constraint firstAttribute="height" constant="50" id="dHn-fN-e8h"/>
+                                    <constraint firstAttribute="width" constant="50" id="ydm-60-5xV"/>
                                 </constraints>
-                                <state key="normal" title="Previous"/>
+                                <state key="normal" image="left-arrow"/>
                                 <connections>
                                     <action selector="previous:" destination="Ct7-cV-aZ5" eventType="touchUpInside" id="NVV-Kw-oEi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds0-8B-nz0">
-                                <rect key="frame" x="267" y="580" width="92" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds0-8B-nz0">
+                                <rect key="frame" x="309" y="560" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Vay-aD-U7p"/>
-                                    <constraint firstAttribute="width" constant="92" id="rN3-Iz-4Yp"/>
+                                    <constraint firstAttribute="height" constant="50" id="Vay-aD-U7p"/>
+                                    <constraint firstAttribute="width" constant="50" id="rN3-Iz-4Yp"/>
                                 </constraints>
-                                <state key="normal" title="Next"/>
+                                <state key="normal" image="right-arrow"/>
                                 <connections>
                                     <action selector="next:" destination="Ct7-cV-aZ5" eventType="touchUpInside" id="ohb-Ho-eJl"/>
                                 </connections>
@@ -170,10 +170,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DpE-U3-HHJ">
-                                <rect key="frame" x="16" y="318" width="109" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DpE-U3-HHJ">
+                                <rect key="frame" x="133" y="328.5" width="109" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Mth-nd-5Sj"/>
+                                    <constraint firstAttribute="width" constant="109" id="SdN-m5-e7r"/>
+                                </constraints>
                                 <state key="normal" title="Download">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -186,6 +189,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cSs-XM-fhf" secondAttribute="trailing" constant="10" id="AKH-LC-lRf"/>
                             <constraint firstItem="IYx-pE-CML" firstAttribute="top" secondItem="yfz-cb-9Y5" secondAttribute="bottom" constant="8" id="E3s-8y-v4h"/>
+                            <constraint firstItem="DpE-U3-HHJ" firstAttribute="centerX" secondItem="BlE-5s-htP" secondAttribute="centerX" id="iNe-NF-UH1"/>
                             <constraint firstItem="yfz-cb-9Y5" firstAttribute="leading" secondItem="BlE-5s-htP" secondAttribute="leadingMargin" id="k3I-ky-Pvn"/>
                             <constraint firstItem="cSs-XM-fhf" firstAttribute="top" secondItem="qm6-ET-PZD" secondAttribute="bottom" constant="8" id="k7h-2Q-Tm0"/>
                             <constraint firstItem="cSs-XM-fhf" firstAttribute="leading" secondItem="BlE-5s-htP" secondAttribute="leading" constant="16" id="mOu-BW-qEd"/>
@@ -197,6 +201,7 @@
                             <constraint firstItem="qm6-ET-PZD" firstAttribute="leading" secondItem="BlE-5s-htP" secondAttribute="leading" constant="10" id="uet-Dl-s8v"/>
                             <constraint firstItem="qm6-ET-PZD" firstAttribute="top" secondItem="yFg-54-NgY" secondAttribute="bottom" constant="8" id="vkL-WO-mNk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iSg-N1-pPU" secondAttribute="trailing" constant="5" id="wuh-7k-Wva"/>
+                            <constraint firstItem="DpE-U3-HHJ" firstAttribute="top" secondItem="IYx-pE-CML" secondAttribute="bottom" constant="18.5" id="zcE-wp-pAU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FlicLoader" id="Nsq-Lk-gVx"/>
@@ -268,4 +273,8 @@
             <point key="canvasLocation" x="-743.20000000000005" y="522.18890554722645"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="left-arrow" width="128" height="128"/>
+        <image name="right-arrow" width="128" height="128"/>
+    </resources>
 </document>
