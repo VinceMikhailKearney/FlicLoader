@@ -39,7 +39,7 @@ class APIService: NSObject
     public func getFlickrPhotos(withText text : String, count : Int)
     {
         if Folders.hasGallery(String(text.hash)) {
-            self.gotAnError(reason: "Already downloaded images matching this text")
+            self.delegates?.invokeDelegates{ $0.downloadError("Already dowloaded images with this text") }
             return
         }
         
@@ -102,10 +102,9 @@ class APIService: NSObject
         return (components.url)!
     }
     
-    private func gotAnError(reason : String)
-    {
+    private func gotAnError(reason : String) {
         print(reason)
-        self.delegates?.invokeDelegates { $0.downloadError(reason) }
+        DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadError(reason) } }
     }
     
     private func runDataTask(withUrl url : URL, completion: @escaping (_ result : Dictionary<String, AnyObject>?) -> Void)
