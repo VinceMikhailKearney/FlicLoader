@@ -23,9 +23,7 @@ class APIService: NSObject
     public static var totalImageCount : Int?
     
     public static func sharedInstance() -> APIService {
-        if self.service == nil {
-            self.service = APIService()
-        }
+        if self.service == nil { self.service = APIService() }
         return self.service!
     }
     
@@ -57,27 +55,23 @@ class APIService: NSObject
             
             for photoDic in photosArray
             {
-                if let string = photoDic["url_m"] as? String {
-                    print(string)
-                }
+                if let string = photoDic["url_m"] as? String { print(string) }
+                
                 guard let imageUrlString = photoDic["url_m"] as? String else { self.gotAnError(reason: "Could not find image url string"); return }
                 guard let imageTitle = photoDic["title"] as? String else { self.gotAnError(reason: "Could not find image title"); return }
                 guard let imageId = photoDic["id"] as? String else { self.gotAnError(reason: "Could not get image ID"); return}
                 
                 let imageURL = URL(string: imageUrlString)
-                if let imageData = try? Data(contentsOf: imageURL!)
-                {
+                if let imageData = try? Data(contentsOf: imageURL!) {
                     let newFlic : Flic = Flic(title: imageTitle, data: imageData, identifier: imageId)
                     newFolder.addFlic(newFlic)
-                }
-                else {
+                } else {
                     self.gotAnError(reason: "Seems that no image exists at this URL!")
                 }
             }
             
             Folders.addFolder(newFolder)
             DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadedImages() } }
-            print("Should have downloaded them all")
         }
     }
     
@@ -137,8 +131,7 @@ class APIService: NSObject
             }
             
             failure = "Flickr response states a failure"
-            guard let status = parsed["stat"] as? String, status == "ok" else
-            {
+            guard let status = parsed["stat"] as? String, status == "ok" else {
                 if let message = parsed["message"] as? String { failure = message }
                 self.gotAnError(reason: failure)
                 return
