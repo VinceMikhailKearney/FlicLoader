@@ -58,8 +58,6 @@ class APIService: NSObject
             var totalPercent : Float = percent
             for photoDic in photosArray
             {
-                if let string = photoDic["url_m"] as? String { print(string) }
-                
                 guard let imageUrlString = photoDic["url_m"] as? String else { self.gotAnError(reason: "Could not find image url string"); return }
                 guard let imageTitle = photoDic["title"] as? String else { self.gotAnError(reason: "Could not find image title"); return }
                 guard let imageId = photoDic["id"] as? String else { self.gotAnError(reason: "Could not get image ID"); return}

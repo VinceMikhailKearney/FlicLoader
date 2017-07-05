@@ -49,7 +49,6 @@ extension DownloadsViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("The table cell name: \((self.flicFolders?[indexPath.row])?.name ?? "No name")")
         self.performSegue(withIdentifier: "showFlicFolder", sender: (self.flicFolders?[indexPath.row])?.flics())
         tableView.deselectRow(at: indexPath, animated: true)
     }
