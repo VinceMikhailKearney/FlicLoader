@@ -92,20 +92,33 @@
                                     <action selector="next:" destination="Ct7-cV-aZ5" eventType="touchUpInside" id="ohb-Ho-eJl"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-R9-Edl">
+                                <rect key="frame" x="141" y="575" width="93" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="FqC-Am-Ddq"/>
+                                    <constraint firstAttribute="width" constant="93" id="p2m-gR-cdz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.69019607839999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="F3q-wv-nzk" firstAttribute="leading" secondItem="IT2-85-zdR" secondAttribute="leadingMargin" id="0uc-Ty-USj"/>
                             <constraint firstItem="Ds0-8B-nz0" firstAttribute="trailing" secondItem="IT2-85-zdR" secondAttribute="trailingMargin" id="7VU-Ji-az5"/>
                             <constraint firstItem="7OG-Vy-kVd" firstAttribute="top" secondItem="d8Q-Ni-mf1" secondAttribute="bottom" constant="8" id="ArM-Oi-k1g"/>
+                            <constraint firstItem="dZE-R9-Edl" firstAttribute="centerX" secondItem="IT2-85-zdR" secondAttribute="centerX" id="AsO-VU-Hcf"/>
                             <constraint firstItem="MyF-n5-DFb" firstAttribute="top" secondItem="7OG-Vy-kVd" secondAttribute="bottom" constant="70" id="DY6-ym-b3A"/>
                             <constraint firstItem="MyF-n5-DFb" firstAttribute="top" secondItem="Ds0-8B-nz0" secondAttribute="bottom" constant="8" id="EB3-65-jun"/>
                             <constraint firstItem="MyF-n5-DFb" firstAttribute="top" secondItem="F3q-wv-nzk" secondAttribute="bottom" constant="8" id="ECH-kx-Ej1"/>
                             <constraint firstItem="7OG-Vy-kVd" firstAttribute="leading" secondItem="IT2-85-zdR" secondAttribute="leadingMargin" id="WRb-gH-HcD"/>
+                            <constraint firstItem="MyF-n5-DFb" firstAttribute="top" secondItem="dZE-R9-Edl" secondAttribute="bottom" constant="22" id="bwz-k4-pbj"/>
                             <constraint firstItem="7OG-Vy-kVd" firstAttribute="trailing" secondItem="IT2-85-zdR" secondAttribute="trailingMargin" id="qZx-fQ-oLQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imagePositionLabel" destination="dZE-R9-Edl" id="ccU-mh-Bax"/>
                         <outlet property="imageView" destination="7OG-Vy-kVd" id="eZG-MD-Bb2"/>
                     </connections>
                 </viewController>
