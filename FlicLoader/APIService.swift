@@ -52,7 +52,10 @@ class APIService: NSObject
             }
             
             let newFolder : FlicFolder = FlicFolder(identifier: String(text.hash), name: text)
+            APIService.totalImageCount = photosArray.count
+            let percent : Float = (1.00 / Float(APIService.totalImageCount!))
             
+            var totalPercent : Float = percent
             for photoDic in photosArray
             {
                 if let string = photoDic["url_m"] as? String { print(string) }
@@ -62,16 +65,24 @@ class APIService: NSObject
                 guard let imageId = photoDic["id"] as? String else { self.gotAnError(reason: "Could not get image ID"); return}
                 
                 let imageURL = URL(string: imageUrlString)
-                if let imageData = try? Data(contentsOf: imageURL!) {
+                if let imageData = try? Data(contentsOf: imageURL!)
+                {
                     let newFlic : Flic = Flic(title: imageTitle, data: imageData, identifier: imageId)
                     newFolder.addFlic(newFlic)
-                } else {
+                    DispatchQueue.main.sync {
+                        self.delegates?.invokeDelegates { $0.updateToastProgress(totalPercent, imageCount: Int(totalPercent/percent)) }
+                    }
+                    totalPercent += percent
+                    
+                    if newFolder.flics().count == APIService.totalImageCount {
+                        Folders.addFolder(newFolder)
+                        DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadedImages() } }
+                    }
+                }
+                else {
                     self.gotAnError(reason: "Seems that no image exists at this URL!")
                 }
             }
-            
-            Folders.addFolder(newFolder)
-            DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadedImages() } }
         }
     }
     

@@ -54,6 +54,7 @@ class SearchViewController: UIViewController, APIServiceDelegate
         self.progressHud = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.progressHud?.mode = .annularDeterminate
         self.progressHud?.label.text = "Downloading Images"
+        self.progressHud?.detailsLabel.text = "0/\(Int(self.slider.value))"
     }
     
     func showToast(_ text : String)
@@ -67,9 +68,13 @@ class SearchViewController: UIViewController, APIServiceDelegate
     
     // MARK: Actions
     
-    @IBAction func downloadImages() {
+    @IBAction func downloadImages()
+    {
+        guard (self.textField.text?.characters.count)! > 0 else { self.showToast("No ID Entered"); return }
+        
         self.textField.resignFirstResponder()
         self.view.isUserInteractionEnabled = false
+        self.displayDownloadingImagesToast()
         APIService.sharedInstance().getFlickrPhotos(withText: self.textField.text!.stripWhitespace(), count: Int(self.slider.value))
     }
     
@@ -89,7 +94,7 @@ class SearchViewController: UIViewController, APIServiceDelegate
     
     func updateToastProgress(_ progress: Float, imageCount: Int) {
         progressHud?.progress = progress
-        progressHud?.label.text = "\(imageCount)/\(APIService.totalImageCount ?? 0)"
+        progressHud?.detailsLabel.text = "\(imageCount)/\(APIService.totalImageCount ?? 0)"
     }
 }
 

@@ -23,7 +23,7 @@ class DownloadsViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.flicFolders = Folders.list!
+        self.flicFolders = Folders.list ?? [FlicFolder]()
         self.table.reloadData()
     }
     
@@ -50,7 +50,7 @@ extension DownloadsViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("The table cell name: \((self.flicFolders?[indexPath.row])?.name ?? "No name")")
-        self.performSegue(withIdentifier: "showFlicFolder", sender: (self.flicFolders?[indexPath.row])?.flicList)
+        self.performSegue(withIdentifier: "showFlicFolder", sender: (self.flicFolders?[indexPath.row])?.flics())
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

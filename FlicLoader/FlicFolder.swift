@@ -14,7 +14,7 @@ class FlicFolder: NSObject
     public var name : String
     public var identifier : String
     public var imageCount : Int
-    public var flicList : Array<Flic>
+    private var flicList : Array<Flic>
     
     override init()
     {

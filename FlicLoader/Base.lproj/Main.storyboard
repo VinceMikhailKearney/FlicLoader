@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Downloads View Controller-->
+        <!--FlicLoader-->
         <scene sceneID="2wf-4a-jG3">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="LKa-v6-dLr" customClass="DownloadsViewController" customModule="FlicLoader" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.69019607839999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xxE-Mw-hYi" firstAttribute="top" secondItem="sJE-9j-041" secondAttribute="bottom" id="7dQ-xC-vtZ"/>
                             <constraint firstAttribute="trailing" secondItem="sJE-9j-041" secondAttribute="trailing" id="Qfa-a1-anz"/>
@@ -45,7 +45,7 @@
                             <constraint firstItem="sJE-9j-041" firstAttribute="top" secondItem="ZvJ-L9-Gn7" secondAttribute="bottom" id="tsp-Mo-VGM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lpg-zS-zDI"/>
+                    <navigationItem key="navigationItem" title="FlicLoader" id="lpg-zS-zDI"/>
                     <connections>
                         <outlet property="table" destination="sJE-9j-041" id="fze-t8-vUf"/>
                         <segue destination="Ct7-cV-aZ5" kind="show" identifier="showFlicFolder" id="JJM-aH-rQC"/>
@@ -93,7 +93,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.3921568627" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.69019607839999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="F3q-wv-nzk" firstAttribute="leading" secondItem="IT2-85-zdR" secondAttribute="leadingMargin" id="0uc-Ty-USj"/>
                             <constraint firstItem="Ds0-8B-nz0" firstAttribute="trailing" secondItem="IT2-85-zdR" secondAttribute="trailingMargin" id="7VU-Ji-az5"/>
@@ -113,7 +113,7 @@
             </objects>
             <point key="canvasLocation" x="1021.6" y="521.28935532233891"/>
         </scene>
-        <!--Search View Controller-->
+        <!--FlicLoader-->
         <scene sceneID="kws-OE-lAj">
             <objects>
                 <viewController id="Gac-mP-Nna" customClass="SearchViewController" customModule="FlicLoader" customModuleProvider="target" sceneMemberID="viewController">
@@ -199,7 +199,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iSg-N1-pPU" secondAttribute="trailing" constant="5" id="wuh-7k-Wva"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Nsq-Lk-gVx"/>
+                    <navigationItem key="navigationItem" title="FlicLoader" id="Nsq-Lk-gVx"/>
                     <connections>
                         <outlet property="downloadButton" destination="DpE-U3-HHJ" id="qEs-sm-9Xx"/>
                         <outlet property="slider" destination="IYx-pE-CML" id="kTt-rh-Qb9"/>
