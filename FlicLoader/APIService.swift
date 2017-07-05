@@ -34,8 +34,15 @@ class APIService: NSObject
         super.init()
     }
     
+    // MARK: Public Interface
+    
     public func getFlickrPhotos(withText text : String, count : Int)
     {
+        if Folders.hasGallery(String(text.hash)) {
+            self.gotAnError(reason: "Already downloaded images matching this text")
+            return
+        }
+        
         let url : URL = self.urlFromComponentsWithText(text, count: String(count))
         print("The URL: \(url)")
         self.runDataTask(withUrl: url)
@@ -46,8 +53,7 @@ class APIService: NSObject
                 return
             }
             
-            let hash : String = String(photosArray.description.hashValue)
-            let newFolder : FlicFolder = FlicFolder(identifier: hash)
+            let newFolder : FlicFolder = FlicFolder(identifier: String(text.hash))
             
             for photoDic in photosArray
             {
@@ -75,6 +81,8 @@ class APIService: NSObject
         }
     }
     
+    // MARK: Private Helpers
+    
     private func urlFromComponentsWithText(_ text : String, count : String) -> URL
     {
         var components : URLComponents = URLComponents()
@@ -94,9 +102,10 @@ class APIService: NSObject
         return (components.url)!
     }
     
-    private func gotAnError(reason : String) {
+    private func gotAnError(reason : String)
+    {
         print(reason)
-        DispatchQueue.main.sync { self.delegates?.invokeDelegates { $0.downloadError(reason) } }
+        self.delegates?.invokeDelegates { $0.downloadError(reason) }
     }
     
     private func runDataTask(withUrl url : URL, completion: @escaping (_ result : Dictionary<String, AnyObject>?) -> Void)

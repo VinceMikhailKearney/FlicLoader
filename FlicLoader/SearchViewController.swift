@@ -21,6 +21,7 @@ class SearchViewController: UIViewController, APIServiceDelegate
     @IBOutlet weak var slider : UISlider!
     @IBOutlet weak var sliderCountLabel : UILabel!
     @IBOutlet weak var textField : UITextField!
+    private var progressHud : MBProgressHUD?
     
     // MARK: Lifecycle
     
@@ -30,6 +31,7 @@ class SearchViewController: UIViewController, APIServiceDelegate
         self.sliderCountLabel.text = String(Int(self.slider.value))
         self.slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         self.downloadButton.layer.cornerRadius = 10
+        self.textField!.text = "Titanfall, BT"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +50,12 @@ class SearchViewController: UIViewController, APIServiceDelegate
         self.sliderCountLabel.text = String(Int(self.slider.value))
     }
     
+    func displayDownloadingImagesToast() {
+        self.progressHud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.progressHud?.mode = .annularDeterminate
+        self.progressHud?.label.text = "Downloading Images"
+    }
+    
     func showToast(_ text : String)
     {
         let hud : MBProgressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -62,9 +70,7 @@ class SearchViewController: UIViewController, APIServiceDelegate
     @IBAction func downloadImages() {
         self.textField.resignFirstResponder()
         self.view.isUserInteractionEnabled = false
-        let string : String = self.textField.text!.stripWhitespace()
-        print("The text we are searching for: \(string)")
-        APIService.sharedInstance().getFlickrPhotos(withText: string, count: Int(self.slider.value))
+        APIService.sharedInstance().getFlickrPhotos(withText: self.textField.text!.stripWhitespace(), count: Int(self.slider.value))
     }
     
     // MARK: APIServiceDelegate Methods
@@ -82,7 +88,8 @@ class SearchViewController: UIViewController, APIServiceDelegate
     }
     
     func updateToastProgress(_ progress: Float, imageCount: Int) {
-        
+        progressHud?.progress = progress
+        progressHud?.label.text = "\(imageCount)/\(APIService.totalImageCount ?? 0)"
     }
 }
 

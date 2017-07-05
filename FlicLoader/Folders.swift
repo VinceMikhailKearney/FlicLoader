@@ -16,9 +16,14 @@ class Folders: NSObject
     {
         if self.list == nil { self.list = Array<FlicFolder>() }
         
-        if !(self.list!.contains { $0.identifier == folder.identifier }) {
+        if !(self.hasGallery(folder.identifier)) {
             self.list?.append(folder)
         }
+    }
+    
+    public static func hasGallery(_ identifier : String) -> Bool {
+        guard self.list != nil else { return false }
+        return self.list!.contains { $0.identifier == identifier }
     }
     
     public static func getGallery(withId id : String) -> FlicFolder?
