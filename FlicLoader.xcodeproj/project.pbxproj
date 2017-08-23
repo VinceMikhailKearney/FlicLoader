@@ -17,7 +17,6 @@
 		D8D56A931EFB1604000168EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D56A911EFB1604000168EC /* LaunchScreen.storyboard */; };
 		D8D56A9E1EFB1604000168EC /* FlicLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D56A9D1EFB1604000168EC /* FlicLoaderTests.swift */; };
 		D8D56AA91EFB16C3000168EC /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D56AA81EFB16C3000168EC /* APIService.swift */; };
-		D8D56AAB1EFB1896000168EC /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D56AAA1EFB1896000168EC /* Secret.swift */; };
 		D8D56AAD1EFB19C5000168EC /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D56AAC1EFB19C5000168EC /* DownloadsViewController.swift */; };
 		D8F15F111F0019ED00F03344 /* FlicFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F15F101F0019ED00F03344 /* FlicFolder.swift */; };
 		D8F15F131F0019F800F03344 /* Flic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F15F121F0019F800F03344 /* Flic.swift */; };
@@ -51,7 +50,6 @@
 		D8D56A9D1EFB1604000168EC /* FlicLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicLoaderTests.swift; sourceTree = "<group>"; };
 		D8D56A9F1EFB1604000168EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D56AA81EFB16C3000168EC /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		D8D56AAA1EFB1896000168EC /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		D8D56AAC1EFB19C5000168EC /* DownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		D8F15F101F0019ED00F03344 /* FlicFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlicFolder.swift; sourceTree = "<group>"; };
 		D8F15F121F0019F800F03344 /* Flic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flic.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				D85B045A1F0D8443005C7BE3 /* ext */,
 				D8D56A881EFB1604000168EC /* AppDelegate.swift */,
 				D8D56AA81EFB16C3000168EC /* APIService.swift */,
-				D8D56AAA1EFB1896000168EC /* Secret.swift */,
 				D85B045C1F0D8453005C7BE3 /* Models */,
 				D85B045B1F0D844D005C7BE3 /* UI */,
 				D8D56A8C1EFB1604000168EC /* Main.storyboard */,
@@ -260,7 +257,6 @@
 				D8D56AAD1EFB19C5000168EC /* DownloadsViewController.swift in Sources */,
 				D8F15F111F0019ED00F03344 /* FlicFolder.swift in Sources */,
 				D8D56A8B1EFB1604000168EC /* SearchViewController.swift in Sources */,
-				D8D56AAB1EFB1896000168EC /* Secret.swift in Sources */,
 				D8D56AA91EFB16C3000168EC /* APIService.swift in Sources */,
 				D8F15F131F0019F800F03344 /* Flic.swift in Sources */,
 				D8D56A891EFB1604000168EC /* AppDelegate.swift in Sources */,

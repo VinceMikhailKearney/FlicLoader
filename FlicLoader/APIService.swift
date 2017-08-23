@@ -94,7 +94,7 @@ class APIService: NSObject
         components.path = "/services/rest"
         components.queryItems = [URLQueryItem]()
         components.queryItems!.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
-        components.queryItems!.append(URLQueryItem(name: "api_key", value: Secret.APIKey))
+        components.queryItems!.append(URLQueryItem(name: "api_key", value: "a870a96158b54bbabec2215afc8f76cc"))
         components.queryItems!.append(URLQueryItem(name: "text", value: text))
         components.queryItems!.append(URLQueryItem(name: "per_page", value: count))
         components.queryItems!.append(URLQueryItem(name: "extras", value: "url_m"))
