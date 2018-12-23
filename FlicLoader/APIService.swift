@@ -46,7 +46,8 @@ class APIService: NSObject
         self.runDataTask(withUrl: url)
         { (result) in
             
-            guard let photosDictionary = result?["photos"] as? [String : AnyObject], let photosArray = photosDictionary["photo"] as? Array<Dictionary<String, AnyObject>> else {
+            guard let photosDictionary = result?["photos"] as? [String : AnyObject],
+                let photosArray = photosDictionary["photo"] as? Array<Dictionary<String, AnyObject>> else {
                 self.gotAnError(reason: "Did not find the keys in the dictionary")
                 return
             }
